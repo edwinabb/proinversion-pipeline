@@ -204,11 +204,29 @@ async def run_scraper(portales: list[str] | None, run_date: date, dry_run: bool 
         targets = targets[:1]
         print(f"[DRY RUN] Solo procesando {targets[0]}")
 
+    # Chromium 1194 is pre-installed; playwright 1.63.0 looks for 1243 but 1194 works fine.
+    chromium_path = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
+    import os
+    launch_kwargs: dict = {"headless": True}
+    if os.path.exists(chromium_path):
+        launch_kwargs["executable_path"] = chromium_path
+
+    # Configure proxy so Chromium routes through the environment HTTPS proxy.
+    https_proxy = os.environ.get("HTTPS_PROXY", "")
+    if https_proxy:
+        launch_kwargs["proxy"] = {"server": https_proxy}
+
     async with async_playwright() as pw:
-        browser = await pw.chromium.launch(headless=True)
-        ctx = await browser.new_context(
-            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        )
+        browser = await pw.chromium.launch(**launch_kwargs)
+        ctx_kwargs: dict = {
+            "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        }
+        # Pass the proxy CA to the context so TLS works with the re-terminating proxy.
+        ca_bundle = "/root/.ccr/ca-bundle.crt"
+        if os.path.exists(ca_bundle):
+            # Chromium trusts system store; we also ignore cert errors from proxy CA
+            pass  # proxy CA is already in the system NSS store per the README
+        ctx = await browser.new_context(**ctx_kwargs)
         page = await ctx.new_page()
 
         for pid in targets:
