@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.env
+
+# datos crudos y procesados — excluir binarios grandes del repo
+data/raw/*/
+data/processed/*.parquet
+output/*.xlsx
+
+# pero conservar la estructura de directorios
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!output/.gitkeep

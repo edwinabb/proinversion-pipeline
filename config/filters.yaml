@@ -1,0 +1,146 @@
+tipo_cambio_usd: 3.40
+monto_minimo_usd: 5000000
+
+portales:
+  P1:
+    nombre: "Portafolio APP / PA"
+    url: "https://www.investinperu.pe/modulos/JER/PlantillaStandardHN.aspx?ARE=0&PFL=0&JER=5652"
+    modalidad: APP
+    filtros_ui:
+      sector: [Telecomunicaciones, Tecnología, Comunicaciones, Penitenciario]
+      fase: ["En Cartera"]
+      anio_adjudicacion: [2026, 2027, 2028]
+    competencia:
+      fase: Adjudicado
+      anios: [2023, 2024, 2025, 2026]
+
+  P2:
+    nombre: "OxI – Inversiones en búsqueda de empresa financista"
+    url: "https://www.investinperu.pe/modulos/JER/PlantillaStandardHN.aspx?ARE=0&PFL=0&JER=5651"
+    modalidad: OxI
+    filtros_ui:
+      funcion: [COMUNICACIONES, "ORDEN PÚBLICO Y SEGURIDAD"]
+      entidad: ["MINISTERIO DE TRANSPORTES Y COMUNICACIONES", "MINISTERIO DEL INTERIOR", JUSTICIA]
+    filtros_pandas:
+      monto_soles_min: 17000000
+
+  P3:
+    nombre: "OxI – Intervenciones priorizadas Ley 29230"
+    url: "https://www.investinperu.pe/modulos/JER/PlantillaStandardHN.aspx?ARE=0&PFL=0&JER=5653"
+    modalidad: OxI
+    filtros_ui:
+      funcion: [COMUNICACIONES, "ORDEN PÚBLICO Y SEGURIDAD"]
+      entidad: ["MINISTERIO DE TRANSPORTES Y COMUNICACIONES", "MINISTERIO DEL INTERIOR", JUSTICIA]
+    filtros_pandas:
+      monto_soles_min: 17000000
+
+  P4:
+    nombre: "OxI – Intervenciones priorizadas D.U. 010-2026 (FEN)"
+    url: "https://www.investinperu.pe/modulos/JER/PlantillaStandardHN.aspx?ARE=0&PFL=0&JER=7109"
+    modalidad: OxI-FEN
+    filtros_ui: {}
+
+  P5:
+    nombre: "PA – Proyectos en cartera"
+    url: "https://www.investinperu.pe/modulos/JER/PlantillaStandardHN.aspx?ARE=0&PFL=0&JER=5654"
+    modalidad: PA
+    filtros_ui:
+      sector: [Telecomunicaciones, Tecnología, Comunicaciones, Penitenciario]
+      fase: ["En Cartera"]
+      anio_adjudicacion: [2026, 2027, 2028]
+    competencia:
+      fase: Adjudicado
+      anios: [2023, 2024, 2025, 2026]
+
+  P6:
+    nombre: "VERTIX – Búsqueda por Proyectos"
+    url: "https://www.investinperu.pe/modulos/JER/PlantillaStandardHN.aspx?ARE=0&PFL=0&JER=7110"
+    modalidad: APP
+    filtros_ui:
+      sector: [Telecomunicaciones, Tecnología, Comunicaciones, Penitenciario]
+      fase: ["En Cartera"]
+      anio_adjudicacion: [2026, 2027, 2028]
+    competencia:
+      fase: Adjudicado
+      anios: [2023, 2024, 2025, 2026]
+
+clasificacion:
+  fit_core_keywords:
+    - fibra optica
+    - fibra óptica
+    - banda ancha
+    - red de transporte
+    - conectividad
+    - internet
+    - telecomunicaciones
+    - nodos
+    - o&m de red
+    - red dorsal
+    - ftth
+    - fttx
+    - backbone
+  fit_adyacente_keywords:
+    - videovigilancia
+    - camaras
+    - cámaras
+    - c4
+    - c5
+    - centro de monitoreo
+    - radiocomunicacion
+    - alerta temprana
+    - centro de datos
+    - data center
+    - seguridad tecnologica
+    - sistema integrado de seguridad
+  fit_periferico_keywords:
+    - equipamiento tecnologico
+    - equipamiento informatico
+    - sistemas de informacion
+    - plataforma digital
+
+  timing_map:
+    TEMPRANO:
+      - idea
+      - por priorizar
+      - en formulacion
+      - en formulación
+      - en estructuracion
+      - en estructuración
+    MEDIO:
+      - priorizado
+      - actos previos
+      - informe previo
+    URGENTE:
+      - proceso de seleccion
+      - proceso de selección
+      - convocatoria
+      - licitacion
+      - licitación
+    COMPETENCIA:
+      - adjudicado
+
+semillas_validacion:
+  - nombre: "Loreto Alto Amazonas–Datem"
+    entidad: MTC
+    monto_soles_aprox: 730100000
+    portal: P5
+  - nombre: "Loreto Napo–Putumayo"
+    entidad: MTC
+    monto_soles_aprox: 418300000
+    portal: P5
+  - nombre: "Madre de Dios"
+    entidad: MTC
+    monto_soles_aprox: 148600000
+    portal: P5
+  - nombre: "Red Dorsal Nacional de Fibra Óptica"
+    portal: P1
+  - nombre: "Cajamarca Pronatel"
+    portal: P1
+  - nombre: "Piura Pronatel"
+    portal: P1
+  - nombre: "Tumbes Pronatel"
+    portal: P1
+  - nombre: "GORE Junín seguridad ciudadana"
+    entidad: GORE Junín
+    monto_soles_aprox: 32000000
+    portal: P2
